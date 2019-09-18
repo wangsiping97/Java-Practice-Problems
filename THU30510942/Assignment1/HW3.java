@@ -1,4 +1,4 @@
-public class c {
+public class HW3 {
     public static void main(String[] arguments) {
         long nownum = 329447467;
         long second = 365 * 24 * 60 * 60;

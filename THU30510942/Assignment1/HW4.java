@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.lang.Math;
 
-public class d {
+public class HW4 {
     public static void main(String[] arguments) {
         Scanner in = new Scanner(System.in);
         boolean flag = true;
@@ -18,5 +18,6 @@ public class d {
                 System.out.print("Invalid input! ");
             }
         }
+        in.close();
     }
 }
