@@ -19,12 +19,16 @@ public class Complex {
         imaginaryPart -= x.imaginaryPart;
     }
     /**print method */
-    void print() {
+    String print() {
+        String ans = "";
         if (imaginaryPart == 0) {
-            System.out.println(realPart);
+            ans += realPart;
+            System.out.println(ans);
         }
         else {
-            System.out.println(realPart + "+" + imaginaryPart + "i");
+            ans  = realPart + "+" + imaginaryPart + "i";
+            System.out.println(ans);
         }
+        return ans;
     }
 }
