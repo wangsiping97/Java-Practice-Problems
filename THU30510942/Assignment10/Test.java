@@ -14,8 +14,7 @@ public class Test
         {
             if (obj instanceof Fillable)
             {
-                Method method = obj.getClass().getMethod("howToFill");
-                method.invoke(obj);
+                ((Fillable)obj).howToFill();
             }
         }
     }
