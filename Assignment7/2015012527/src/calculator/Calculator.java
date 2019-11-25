@@ -18,7 +18,7 @@ public class Calculator {
 	public static void main(String[] args) {
 		/** add JFrame */
 		JFrame frame = new JFrame();
-		frame.setSize(400, 400);
+		frame.setSize(200, 200);
 		frame.setVisible(true);
 		frame.setTitle("计算器");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);//关闭窗口
@@ -82,6 +82,8 @@ public class Calculator {
 		panel1.add(addButton("/", command));
 		panel2.add(addButton("BackSpace", command));
 		panel2.add(addButton("C", command));
+
+		frame.setVisible(true);
 	}
 
 	public static JButton addButton (String label, ActionListener command) {

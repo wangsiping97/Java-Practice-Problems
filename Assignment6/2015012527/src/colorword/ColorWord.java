@@ -19,7 +19,6 @@ public class ColorWord extends JFrame {
         JTextArea jt=new JTextArea();
         String title = "ColorWord";
         JFrame jf=new JFrame(title);
-        jf.setVisible(true);
         jf.setSize(600, 400);
         jf.setLayout(new BorderLayout()); 
         jf.add(BorderLayout.CENTER,jt);
@@ -48,5 +47,6 @@ public class ColorWord extends JFrame {
             }
         });
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jf.setVisible(true);
     }
 }
