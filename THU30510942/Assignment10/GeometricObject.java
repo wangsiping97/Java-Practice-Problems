@@ -1,6 +1,6 @@
 // Example for PPT page No.11
 
-public abstract class GeometricObject implements Fillable
+public abstract class GeometricObject
 {
 	// Data fields for Geometric Object
 	private String color="white";
