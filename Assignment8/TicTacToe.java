@@ -6,24 +6,34 @@ public class TicTacToe extends JFrame {
     private Pad[][] cells;
     private JLabel statusLabel;
     private JButton startButton;
+    private JButton exitButton;
     private int whoseTurn;
     private boolean isStarted;
-    private JPanel mainPanel;
-    private JPanel statusPanel;
+    private JPanel mainPanel = new JPanel(new GridLayout(3, 3));
+    private JPanel statusPanel = new JPanel(new BorderLayout());
+    private Container contain = this.getContentPane();
+    private static ImageIcon bgImage = new ImageIcon("3.jpeg");
 
     TicTacToe () {
         super("Tic-Tac-Toe");
-        setSize(360, 400);
+        setSize(350, 400);
         setLocationRelativeTo(null);
         setBackground(Color.BLACK);
+        setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        mainPanel = new JPanel(new GridLayout(3, 3));
-        addMainPanel(mainPanel);
-        statusPanel = new JPanel(new BorderLayout());
-        addStatusPanel(statusPanel);
+        ((JPanel) contain).setOpaque(false);
+        addBgImage();
+        addMainPanel();
+        addStatusPanel();
     }
 
-    public void addMainPanel(JPanel mainPanel) {
+    public void addBgImage() {
+        JLabel imgLabel = new JLabel(bgImage);
+        getLayeredPane().add(imgLabel, new Integer(Integer.MIN_VALUE));
+        imgLabel.setBounds(0, 0, bgImage.getIconWidth(), bgImage.getIconHeight());
+    }
+
+    public void addMainPanel() {
         cells = new Pad[3][3];
         for (int i = 0; i < 3; ++i) {
             for (int j = 0; j < 3; ++j) {
@@ -31,11 +41,11 @@ public class TicTacToe extends JFrame {
                 mainPanel.add(cells[i][j]);
             }
         }
-        mainPanel.setVisible(true);
-        add(mainPanel);
+        mainPanel.setVisible(false);
+        contain.add(mainPanel);
     }
 
-    public void addStatusPanel(JPanel statusPanel) {
+    public void addStatusPanel() {
         statusLabel = new JLabel();
         statusLabel.setHorizontalAlignment(JLabel.CENTER);
         statusPanel.add(statusLabel);
@@ -43,12 +53,27 @@ public class TicTacToe extends JFrame {
         startButton = new JButton("Start");
         startButton.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
+                mainPanel.setVisible(true);
                 whoseTurn = 0;
                 startButton.setText("Started");
                 startButton.setEnabled(false);
                 statusLabel.setText("Player1's turn");
                 isStarted = true;
-                System.out.println("Fucker");
+                for (int i = 0; i < 3; ++i)
+                    for (int j = 0; j < 3; ++j) {
+                        cells[i][j].repaint();
+                        cells[i][j].setFilled(false);
+                        cells[i][j].setLabel(-1);
+                    }
+            }
+        });
+        exitButton = new JButton("Exit");
+        exitButton.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                mainPanel.setVisible(false);
+                whoseTurn = 0;
+                startButton.setEnabled(true);
+                isStarted = true;
                 for (int i = 0; i < 3; ++i)
                     for (int j = 0; j < 3; ++j) {
                         cells[i][j].repaint();
@@ -58,6 +83,7 @@ public class TicTacToe extends JFrame {
             }
         });
         statusPanel.add(startButton, BorderLayout.EAST);
+        statusPanel.add(exitButton, BorderLayout.WEST);
         add(statusPanel, BorderLayout.SOUTH);
     }
 
@@ -67,8 +93,8 @@ public class TicTacToe extends JFrame {
         private Image image1 = new ImageIcon("1.jpeg").getImage(); 
         private Image image2 = new ImageIcon("2.jpeg").getImage(); 
         Pad() {
-            setBackground(Color.WHITE);
-            setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            setBackground(Color.BLACK);
+            setBorder(BorderFactory.createLineBorder(Color.WHITE));
             isFilled = false;
             addCommand();
             label = -1;
@@ -78,7 +104,6 @@ public class TicTacToe extends JFrame {
                 public void mouseClicked(MouseEvent e) {
                     super.mouseClicked(e);
                     if (isStarted) {
-                        System.out.println("click");
                         if (!isFilled) {
                             repaint();
                             isFilled = true;
