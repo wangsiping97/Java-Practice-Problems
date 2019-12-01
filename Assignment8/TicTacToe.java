@@ -18,7 +18,7 @@ public class TicTacToe extends JFrame {
         super("Tic-Tac-Toe");
         setSize(350, 400);
         setLocationRelativeTo(null);
-        setBackground(Color.BLACK);
+        setBackground(Color.WHITE);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         ((JPanel) contain).setOpaque(false);
@@ -57,6 +57,8 @@ public class TicTacToe extends JFrame {
                 whoseTurn = 0;
                 startButton.setText("Started");
                 startButton.setEnabled(false);
+                exitButton.setVisible(true);
+                exitButton.setEnabled(true);
                 statusLabel.setText("Player1's turn");
                 isStarted = true;
                 for (int i = 0; i < 3; ++i)
@@ -74,6 +76,9 @@ public class TicTacToe extends JFrame {
                 whoseTurn = 0;
                 startButton.setEnabled(true);
                 isStarted = true;
+                exitButton.setVisible(false);
+                exitButton.setEnabled(false);
+                statusLabel.setText("");
                 for (int i = 0; i < 3; ++i)
                     for (int j = 0; j < 3; ++j) {
                         cells[i][j].repaint();
@@ -84,6 +89,8 @@ public class TicTacToe extends JFrame {
         });
         statusPanel.add(startButton, BorderLayout.EAST);
         statusPanel.add(exitButton, BorderLayout.WEST);
+        exitButton.setEnabled(false);
+        exitButton.setVisible(false);
         add(statusPanel, BorderLayout.SOUTH);
     }
 
@@ -190,4 +197,3 @@ public class TicTacToe extends JFrame {
         new TicTacToe().setVisible(true);
     }
 }
-

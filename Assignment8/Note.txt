@@ -1,0 +1,2 @@
+# java 打包方法：
+jar -cvfm tictactoe.jar MANIFEST.mf *.class
