@@ -21,16 +21,7 @@ public class TableBall extends Application {
     Table table;
     int speed = 50;
     public Timeline animation;
-    // public VBox box;
-    // public Button pause;
-    // public Button start;
-    // public BorderPane mainPane = new BorderPane();
     public void start (Stage primaryStage) {
-        // box = new VBox(10);
-        // box.setAlignment(Pos.CENTER);
-        // pause = new Button("PAUSE");
-        // start = new Button("NEW");
-        // box.getChildren().addAll(pause, start);
         table = new Table(500, 300, speed);
         animation = new Timeline(new KeyFrame(Duration.millis(100), e -> table.moveBall()));
         animation.setCycleCount(Timeline.INDEFINITE);
@@ -40,28 +31,6 @@ public class TableBall extends Application {
                 animation.play();
             }
         });
-        // pause.setOnAction(e -> {
-        //     if (animation.getStatus() == Animation.Status.PAUSED) {
-        //         animation.play();
-        //     }
-        //     else {
-        //         animation.pause();
-        //         pause.setText("START");
-        //     }
-        // });
-        // start.setOnAction(e -> {
-        //     speed = 20; table.theta = 0;
-        //     animation.stop();
-        //     table.direction.setEndX(table.getWidth()/4 + 100 * Math.cos(table.theta * Math.PI / 180));
-        //     table.direction.setEndY(table.getHeight()/2 + 100 * Math.sin(table.theta * Math.PI / 180));
-        //     table.getChildren().add(table.direction);
-        //     table.ball.setCenterX(table.getWidth()/4);
-        //     table.ball.setCenterY(table.getHeight()/2);
-        //     table.ball.setOpacity(100);
-        // });
-        // mainPane.setCenter(table);
-        // mainPane.setRight(box);
-        
         Scene scene = new Scene(table, 500, 300);
         primaryStage.setScene(scene);
         primaryStage.show();
@@ -102,22 +71,20 @@ public class TableBall extends Application {
             direction.setEndY(ball.getCenterY());
             direction.setFocusTraversable(true);
             direction.setOnKeyPressed(e -> { 
-                if (e.getCode() == KeyCode.W) {
+                if (e.getCode() == KeyCode.UP) {
                     this.theta = (360 + this.theta - 10) % 360;
-                    direction.setEndX(getWidth()/4 + 100 * Math.cos(theta * Math.PI / 180));
-                    direction.setEndY(getHeight()/2 + 100 * Math.sin(theta * Math.PI / 180));
+                    direction.setEndX(width/4 + 100 * Math.cos(theta * Math.PI / 180));
+                    direction.setEndY(height/2 + 100 * Math.sin(theta * Math.PI / 180));
                 }
-                else if (e.getCode() == KeyCode.S) {
+                else if (e.getCode() == KeyCode.DOWN) {
                     this.theta = (360 + this.theta + 10) % 360;
-                    direction.setEndX(getWidth()/4 + 100 * Math.cos(theta * Math.PI / 180));
-                    direction.setEndY(getHeight()/2 + 100 * Math.sin(theta * Math.PI / 180));
+                    direction.setEndX(width/4 + 100 * Math.cos(theta * Math.PI / 180));
+                    direction.setEndY(height/2 + 100 * Math.sin(theta * Math.PI / 180));
                 }
             });
             direction.setStroke(Color.BLACK);
-            
             getChildren().add(direction);
             getChildren().add(ball);
-            
         }
         public void collide() {
             if (ball.getCenterX() >= rec.getWidth() - ball.getRadius() && (theta <= 90 || theta >= 270)) {
