@@ -1,10 +1,6 @@
 import javafx.animation.Timeline;
-import javafx.animation.Animation;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -14,7 +10,6 @@ import javafx.scene.layout.Pane;
 import javafx.scene.input.KeyCode;
 import javafx.animation.KeyFrame;
 import javafx.util.Duration;
-import javafx.geometry.Pos;
 
 
 public class TableBall extends Application {
