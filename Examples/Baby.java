@@ -19,6 +19,10 @@ public class Baby {
 
     public static void main(String[] arguments) {
         Baby dawa = new Baby("大娃", 20, true);
-        System.out.println(dawa.name); // 访问成员变量
+        Baby erwa = new Baby("A", 20, true);
+        Baby sanwa = new Baby("B", 20, true);
+        dawa = erwa;
+        erwa = sanwa;
+        System.out.println(dawa == sanwa); // 访问成员变量
     }
 }
